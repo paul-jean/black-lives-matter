@@ -1,8 +1,22 @@
 from twilio.twiml.messaging_response import MessagingResponse
 from flask import Flask
 from flask import request
+import celery
+import os
+import redis
 
 app = Flask(__name__)
+cel = celery.Celery('canna-track-bot')
+
+cel.conf.update(BROKER_URL=os.environ['REDIS_URL'],
+                CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
+
+r = redis.from_url(os.environ.get("REDIS_URL"))
+
+
+@cel.task
+def schedule_response():
+    return 2
 
 
 @app.route('/bot', methods=['POST'])
