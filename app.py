@@ -28,8 +28,9 @@ def bot():
     if not responded:
         msg.body('I only know about famous quotes and cats, sorry!')
     async_message = "... and 5 second delayed response!"
+    async_delay = 10
     r = schedule_response.apply_async(
-        args=(async_message, TEST_CLIENT_PHONE), countdown=1)
+        args=(async_message, TEST_CLIENT_PHONE), countdown=async_delay)
     # r.get(on_message=on_raw_message, propagate=False)
     return str(resp)
 
