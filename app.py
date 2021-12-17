@@ -38,7 +38,7 @@ def bot():
         msg.body('I only know about famous quotes and cats, sorry!')
     async_message = "... and 5 second delayed response!"
     r = schedule_response.apply_async(
-        args=(async_message,), countdown=5)
+        args=(async_message,), countdown=1)
     print(r.get(on_message=on_raw_message, propagate=False))
     return str(resp)
 
