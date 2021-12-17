@@ -15,8 +15,8 @@ r = redis.from_url(os.environ.get("REDIS_URL"))
 
 
 @cel.task
-def schedule_response():
-    return 2
+def schedule_response(resp):
+    return str(resp)
 
 
 @app.route('/bot', methods=['POST'])
@@ -32,6 +32,8 @@ def bot():
         responded = True
     if not responded:
         msg.body('I only know about famous quotes and cats, sorry!')
+    schedule_response.apply_async(
+        ('... and 5 second delayed response!'), countdown=5)
     return str(resp)
 
 
