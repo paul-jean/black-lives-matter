@@ -1,26 +1,12 @@
 from twilio.twiml.messaging_response import MessagingResponse
 from flask import Flask
 from flask import request
-import celery
+from tasks import schedule_response
+
 import os
 import redis
 
 app = Flask(__name__)
-cel = celery.Celery('canna-track-bot')
-
-cel.conf.update(BROKER_URL=os.environ['REDIS_URL'],
-                CELERY_RESULT_BACKEND=os.environ['REDIS_URL'])
-
-r = redis.from_url(os.environ.get("REDIS_URL"))
-
-
-@cel.task
-def schedule_response(resp):
-    return str(resp)
-
-
-def on_raw_message(body):
-    print(body)
 
 
 @app.route('/bot', methods=['POST'])
@@ -39,7 +25,7 @@ def bot():
     async_message = "... and 5 second delayed response!"
     r = schedule_response.apply_async(
         args=(async_message,), countdown=1)
-    r.get(on_message=on_raw_message, propagate=False)
+    # r.get(on_message=on_raw_message, propagate=False)
     return str(resp)
 
 
