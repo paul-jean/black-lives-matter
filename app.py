@@ -23,10 +23,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-Base = declarative_base()
 
-
-class Message(Base):
+class Message(db.Model):
     __tablename__ = 'message'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
@@ -39,7 +37,7 @@ class Message(Base):
         self.message_body = message_body
 
 
-Base.metadata.create_all(db)
+db.create_all()
 
 
 @app.route('/bot', methods=['POST'])
