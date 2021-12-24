@@ -7,7 +7,8 @@ from urllib.parse import urlparse
 from datetime import datetime
 import os
 import redis
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy, declarative_base
+from sqlalchemy import create_engine
 
 
 app = Flask(__name__)
@@ -22,8 +23,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+Base = declarative_base()
+engine = create_engine("postgres", echo=False)
+Base.metadata.create_all(engine)
 
-class Message(db.Model):
+
+class Message(Base):
     __tablename__ = 'message'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
