@@ -17,7 +17,8 @@ r = redis.Redis(host=redis_url.hostname, port=redis_url.port, username=redis_url
                 password=redis_url.password, ssl=True, ssl_cert_reqs=None)
 
 app.debug = False
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    "DATABASE_URL").replace("postgres", "postgresql")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
