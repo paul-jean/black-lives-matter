@@ -24,8 +24,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 Base = declarative_base()
-engine = create_engine("postgres", echo=False)
-Base.metadata.create_all(engine)
 
 
 class Message(Base):
@@ -39,6 +37,9 @@ class Message(Base):
         self.date = datetime.now()
         self.phone_number = phone_number
         self.message_body = message_body
+
+
+Base.metadata.create_all(db)
 
 
 @app.route('/bot', methods=['POST'])
