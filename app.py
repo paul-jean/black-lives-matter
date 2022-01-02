@@ -10,6 +10,7 @@ import os
 import redis
 from flask_sqlalchemy import SQLAlchemy, declarative_base
 from sqlalchemy import create_engine
+from flask_migrate import Migrate
 
 
 app = Flask(__name__)
@@ -23,6 +24,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     "DATABASE_URL").replace("postgres", "postgresql")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 class Message(db.Model):
