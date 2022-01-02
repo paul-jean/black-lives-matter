@@ -27,11 +27,14 @@ db = SQLAlchemy(app)
 
 class Message(db.Model):
     __tablename__ = 'message'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'User.id', ondelete='CASCADE'))
     date = db.Column(db.DateTime)
-    phone_number = db.Column(db.String(20))
-    message_body = db.Column(db.String(200))
+    phone_number = db.Column(db.String(20, convert_unicode=True))
+    message_body = db.Column(db.String(200, convert_unicode=True))
+    user = db.relationship(
+        "User", primaryjoin='Message.user_id=User.id', uselist=True)
 
     def __init__(self, phone_number, message_body, **kwargs):
         super(Message, self).__init__(**kwargs)
@@ -42,8 +45,8 @@ class Message(db.Model):
 
 class User(db.Model):
     __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    phone_number = db.Column(db.String(20))
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    phone_number = db.Column(db.String(20, convert_unicode=True))
 
     def __init__(self, phone_number, **kwargs):
         super(User, self).__init__(**kwargs)
