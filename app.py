@@ -20,9 +20,15 @@ r = redis.Redis(host=redis_url.hostname, port=redis_url.port, username=redis_url
                 password=redis_url.password, ssl=True, ssl_cert_reqs=None)
 
 app.debug = False
+
+if os.environ.get('FLASK_ENV') == 'development':
+    app.config.from_object('config.DevConfig')
+else:
+    app.config.from_object('config.ProdConfig')
+
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     "DATABASE_URL").replace("postgres", "postgresql")
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 

@@ -1,2 +1,3 @@
 canna-track-bot-venv
 __pycache__/
+.env
