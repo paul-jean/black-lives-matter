@@ -1,4 +1,5 @@
 from redis import client
+from twilio.rest.api.v2010.account import message
 from twilio.twiml.messaging_response import MessagingResponse
 from flask import Flask
 from flask import request
@@ -42,11 +43,13 @@ class Message(db.Model):
     message_body = db.Column(db.String(200, convert_unicode=True))
     user = db.relationship("User", primaryjoin='User.id==Message.user_id')
 
-    def __init__(self, phone_number, message_body, **kwargs):
+    def __init__(self, phone_number, message_body, user, **kwargs):
         super(Message, self).__init__(**kwargs)
         self.date = datetime.now()
         self.phone_number = phone_number
         self.message_body = message_body
+        self.user = user
+        self.user_id = user.id
 
 
 class User(db.Model):
@@ -67,12 +70,12 @@ def bot():
     print("[DEBUG] request:")
     print(request.values)
     client_phone = request.values.get('From')
-    print("[DEBUG] storing message ...")
-    message_body = request.values.get('Body', '').lower()
-    store_message(client_phone, message_body)
-    print("[DEBUG] message stored.")
     print("[DEBUG] querying for this user ...")
     user = User.query.filter_by(phone_number=client_phone).first()
+    print("[DEBUG] storing message ...")
+    message_body = request.values.get('Body', '').lower()
+    store_message(client_phone, message_body, user)
+    print("[DEBUG] message stored.")
 
     resp = MessagingResponse()
     msg = resp.message()
@@ -99,9 +102,9 @@ def bot():
     return str(resp)
 
 
-def store_message(phone_number, message_body, _db=db):
-    data = Message(phone_number, message_body)
-    _db.session.add(data)
+def store_message(phone_number, message_body, user, _db=db):
+    message = Message(phone_number, message_body, user)
+    _db.session.add(message)
     _db.session.commit()
 
 
