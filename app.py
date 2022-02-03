@@ -33,6 +33,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+# in seconds:
+HALF_HOUR = 60*30
+HOUR_AND_A_HALF = 60*90
 
 class Message(db.Model):
     __tablename__ = 'message'
@@ -64,7 +67,6 @@ class User(db.Model):
 
 db.create_all()
 
-
 @app.route('/bot', methods=['POST'])
 def bot():
     print("[DEBUG] request:")
@@ -86,19 +88,27 @@ def bot():
         msg.body(welcome_message())
         store_user(client_phone)
         print("[DEBUG] new user stored")
+
+    if 'puff' in message_body:
+        response = f"[C8] Ok I'll check back in 30 min ..."
+        async_delay = HALF_HOUR
+        async_message = f"[C8] How are you feeling after your {message_body}?"
         responded = True
 
-    if 'cat' in message_body:
-        # return a cat pic
-        msg.media('https://cataas.com/cat')
+    if 'drop' in message_body:
+        response = f"[C8] Ok I'll check back in 90 min ..."
+        async_delay = HOUR_AND_A_HALF
+        async_message = f"[C8] How are you feeling after your {message_body}?"
         responded = True
 
     if not responded:
-        msg.body('I only know about famous quotes and cats, sorry!')
-    async_delay = 60
-    async_message = f"... and {async_delay}-second delayed response!"
-    r = schedule_response.apply_async(
-        args=(async_message, client_phone), countdown=async_delay)
+        response = f"[C8] Noted!"
+
+    msg.body(response)
+    if async_message and async_delay:
+        r = schedule_response.apply_async(
+            args=(async_message, client_phone), countdown=async_delay)
+
     return str(resp)
 
 
