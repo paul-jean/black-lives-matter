@@ -10,7 +10,7 @@ import os
 # from flask_migrate import Migrate
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='')
 
 # redis_url = urlparse(os.environ.get("REDIS_URL"))
 # r = redis.Redis(host=redis_url.hostname, port=redis_url.port, username=redis_url.username,
@@ -28,9 +28,11 @@ else:
 # db = SQLAlchemy(app)
 # migrate = Migrate(app, db)
 
-@app.route('/')
-def serve_static_files():
-    return send_from_directory('client', '.')
+app = Flask(__name__)  
+
+@app.route('/<path:filename>')  
+def serve_static_files(filename):
+    return send_from_directory(app.static_folder, filename)
 
 # in seconds:
 HALF_HOUR = 60*30
