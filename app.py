@@ -28,8 +28,6 @@ else:
 # db = SQLAlchemy(app)
 # migrate = Migrate(app, db)
 
-app = Flask(__name__)  
-
 @app.route('/index.html')  
 def serve_static_files_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
