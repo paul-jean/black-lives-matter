@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import send_from_directory
 from flask import request
 from urllib.parse import urlparse
 
@@ -26,6 +27,10 @@ else:
 #     "DATABASE_URL").replace("postgres", "postgresql")
 # db = SQLAlchemy(app)
 # migrate = Migrate(app, db)
+
+@app.route('/')
+def serve_static_files():
+    return send_from_directory('client')
 
 # in seconds:
 HALF_HOUR = 60*30
