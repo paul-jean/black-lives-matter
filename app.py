@@ -3,7 +3,6 @@ from twilio.rest.api.v2010.account import message
 from twilio.twiml.messaging_response import MessagingResponse
 from flask import Flask
 from flask import request
-from tasks import schedule_response
 from urllib.parse import urlparse
 
 from datetime import datetime
