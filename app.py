@@ -10,7 +10,7 @@ import os
 # from flask_migrate import Migrate
 
 
-app = Flask(__name__, static_folder='static', static_url_path='')
+app = Flask(__name__, static_folder='client/static')
 
 # redis_url = urlparse(os.environ.get("REDIS_URL"))
 # r = redis.Redis(host=redis_url.hostname, port=redis_url.port, username=redis_url.username,
@@ -30,9 +30,9 @@ else:
 
 app = Flask(__name__)  
 
-@app.route('/<path:filename>')  
-def serve_static_files(filename):
-    return send_from_directory(app.static_folder, filename)
+@app.route('/index.html')  
+def serve_static_files_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 # in seconds:
 HALF_HOUR = 60*30
