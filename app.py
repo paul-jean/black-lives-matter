@@ -30,7 +30,7 @@ else:
 
 @app.route('/')
 def serve_static_files():
-    return send_from_directory('client')
+    return send_from_directory('client', '.')
 
 # in seconds:
 HALF_HOUR = 60*30
