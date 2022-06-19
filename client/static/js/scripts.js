@@ -1,1 +1,3 @@
-alert("hello world!");
+$(document).ready(function() {
+    $('div.main').text("hello world!");
+  });
