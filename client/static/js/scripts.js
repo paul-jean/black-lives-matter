@@ -1,6 +1,5 @@
 $(document).ready(function() {
-    $('div.main').text("0");
-    let counter = $('div.main');
+    let counter = $('div.main')[0];
     const updateCount = () => {
         const count = parseInt(counter.innerText);
         const target = 100;
