@@ -63,6 +63,7 @@ if __name__ == '__main__':
     s = session()
 
     csv_dict = csv_to_dict('./static/data/data.csv')
+    print("Importing csv data ...")
     try:
         for i in csv_dict:
             record = Black_Victim(**{
@@ -71,6 +72,7 @@ if __name__ == '__main__':
                 'death_date' : datetime.strptime(i[2], '%b %d %Y').date(),
                 'age': i[3]
             })
+            print("Adding record: {record}")
             s.add(record) #Add all the records
 
         s.commit() #Attempt to commit all the records
