@@ -7,8 +7,8 @@ from datetime import datetime
 import csv
 import os
 
-from flask_sqlalchemy import SQLAlchemy, Column, Integer, Date, String, Base
-from sqlalchemy import create_engine
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine, Column, Integer, Date, String
 from sqlalchemy.orm import sessionmaker
 from flask_migrate import Migrate
 
