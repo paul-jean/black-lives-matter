@@ -44,7 +44,7 @@ def csv_to_dict(file_name):
 
 Base = declarative_base()
 
-class Black_Victim(Base):
+class Black_Victim(db.Model):
     #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
     __tablename__ = 'Black_Victim'
     __table_args__ = {'sqlite_autoincrement': True}
@@ -55,7 +55,10 @@ class Black_Victim(Base):
     death_date = Column(Date)
     age = Column(Integer)
 
+db.create_all()
+
 if __name__ == '__main__':
+    print("In main ....")
     #Create the session
     session = sessionmaker()
     engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
