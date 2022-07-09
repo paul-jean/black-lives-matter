@@ -10,6 +10,7 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, Column, Integer, Date, String
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 from flask_migrate import Migrate
 
 
@@ -40,6 +41,8 @@ def csv_to_dict(file_name):
     with open(file_name, newline='') as csvfile:
         csv_dicts = [{k: v for k, v in row.items()} for row in csv.DictReader(csvfile.splitlines(), skipinitialspace=True)]
         return csv_dicts
+
+Base = declarative_base()
 
 class Black_Victim(Base):
     #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
