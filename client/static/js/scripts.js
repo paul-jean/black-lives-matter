@@ -12,6 +12,7 @@ $(document).ready(function() {
       }).appendTo(li);
       li.appendTo(ul);
     });
+    console.log(victims);
   });
   // let counter = $("div.main")[0];
   // const updateCount = () => {
