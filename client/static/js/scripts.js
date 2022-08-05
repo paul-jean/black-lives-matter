@@ -1,11 +1,12 @@
 $(document).ready(function() {
   let victims = [];
+  let ul = $( 'main.container div.victims_list' )[0];
   $.get( "/victims", function( vs ) {
     vs.victims.forEach(v => {
       victims.push(v.name);
       const li = document.createElement('li');
       li.innerHTML = v.name;
-      $( ".container.victims_list" )[0].appendChild( li );
+      ul.appendChild( li );
     });
     console.log(victims)
   });
