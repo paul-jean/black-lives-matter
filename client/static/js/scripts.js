@@ -5,7 +5,7 @@ $(document).ready(function() {
       victims.push(v.name);
       const li = document.createElement('li');
       li.innerHTML = v.name;
-      $( ".container.victims_list.ul" ).appendChild( li );
+      $( ".container.victims_list" )[0].appendChild( li );
     });
     console.log(victims)
   });
