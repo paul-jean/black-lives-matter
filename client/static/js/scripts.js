@@ -2,10 +2,11 @@ $(document).ready(function() {
   let victims = [];
   $.get( "/victims", function( vs ) {
     vs.victims.forEach(v => {
-      victims.push(v.name)
+      victims.push(v.name);
+      const li = document.createElement('li');
+      $( "main.div.victims_list.ul" ).appendChild( li );
     });
     console.log(victims)
-    $( "main.div" ).html( victims );
   });
   // let counter = $("div.main")[0];
   // const updateCount = () => {
