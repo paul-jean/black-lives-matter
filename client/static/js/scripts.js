@@ -1,7 +1,8 @@
 $(document).ready(function() {
   let victims = [];
   $.get( "/victims", function( vs ) {
-    vs.forEach(v => {
+    console.log(vs)
+    vs.victims.forEach(v => {
       victims.push(v.name)
     });
     $( "main.div" ).html( victims );
