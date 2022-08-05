@@ -4,7 +4,8 @@ $(document).ready(function() {
     vs.victims.forEach(v => {
       victims.push(v.name);
       const li = document.createElement('li');
-      $( "main.div.victims_list.ul" ).appendChild( li );
+      li.innerHTML = v.name;
+      $( ".container.victims_list.ul" ).appendChild( li );
     });
     console.log(victims)
   });
