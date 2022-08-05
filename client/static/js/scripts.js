@@ -4,12 +4,12 @@ $(document).ready(function() {
   $.get( "/victims", function( vs ) {
     vs.victims.forEach(v => {
       victims.push(v.name);
-      const id = v.id;
-      const li = document.createElement('li');
-      li.innerHTML = $('<a>', {
+      var id = v.id;
+      var li = $('<li/>');
+      $('<a>', {
         text: v.name, 
         href: '/victim_detail/' + id
-      });
+      }).appendTo(li);
       li.appendTo(ul);
     });
   });
