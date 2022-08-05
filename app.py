@@ -29,19 +29,19 @@ else:
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     "DATABASE_URL").replace("postgres", "postgresql")
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+# migrate = Migrate(app, db)
 
 @app.route('/index.html')  
 def serve_static_files_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
 
 
-def csv_to_dict(file_name):
-    with open(file_name, newline='') as csvfile:
-        csv_dicts = [{k: v for k, v in row.items()} for row in csv.DictReader(csvfile.splitlines(), skipinitialspace=True)]
-        return csv_dicts
+# def csv_to_dict(file_name):
+#     with open(file_name, newline='') as csvfile:
+#         csv_dicts = [{k: v for k, v in row.items()} for row in csv.DictReader(csvfile.splitlines(), skipinitialspace=True)]
+#         return csv_dicts
 
-Base = declarative_base()
+# Base = declarative_base()
 
 class Black_Victim(db.Model):
     #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
@@ -54,7 +54,7 @@ class Black_Victim(db.Model):
     death_date = Column(Date)
     age = Column(Integer)
 
-db.create_all()
+# db.create_all()
 
 
 
