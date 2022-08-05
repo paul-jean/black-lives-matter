@@ -43,6 +43,7 @@ def get_victims():
             "name": victim.name,
             "birth_date": victim.birth_date,
             "death_date": victim.death_date,
+            "age": victim.age,
         } for victim in victims]
 
     return {"count": len(results), "victims": results}
