@@ -1,3 +1,4 @@
+from tkinter import W
 from flask import Flask
 from flask import send_from_directory
 from flask import request
@@ -6,6 +7,8 @@ from urllib.parse import urlparse
 from datetime import datetime
 import csv
 import os
+import logging
+import sys
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, Column, Integer, Date, String
@@ -16,11 +19,14 @@ from flask_migrate import Migrate
 
 app = Flask(__name__, static_folder='client/static')
 
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.DEBUG)
+app.debug = True
+
 # redis_url = urlparse(os.environ.get("REDIS_URL"))
 # r = redis.Redis(host=redis_url.hostname, port=redis_url.port, username=redis_url.username,
 #                 password=redis_url.password, ssl=True, ssl_cert_reqs=None)
 
-app.debug = False
 
 if os.environ.get('FLASK_ENV') == 'development':
     app.config.from_object('config.DevConfig')
@@ -57,8 +63,15 @@ class Black_Victim(db.Model):
 
 db.create_all()
 
+
+# set up logging if a heroku env is detected
+if 'DYNO' in os.environ:
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
+
 if __name__ == '__main__':
-    print("In main ....")
+    app.logger.debug("In main ...")
     #Create the session
     session = sessionmaker()
     engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
