@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import send_from_directory
 from flask import request
-from urllib.parse import urlparse
 
 from datetime import datetime
 import csv
@@ -21,11 +20,6 @@ app = Flask(__name__, static_folder='client/static')
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.DEBUG)
 app.debug = True
-
-# redis_url = urlparse(os.environ.get("REDIS_URL"))
-# r = redis.Redis(host=redis_url.hostname, port=redis_url.port, username=redis_url.username,
-#                 password=redis_url.password, ssl=True, ssl_cert_reqs=None)
-
 
 if os.environ.get('FLASK_ENV') == 'development':
     app.config.from_object('config.DevConfig')
