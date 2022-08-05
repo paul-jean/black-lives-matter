@@ -4,11 +4,14 @@ $(document).ready(function() {
   $.get( "/victims", function( vs ) {
     vs.victims.forEach(v => {
       victims.push(v.name);
+      const id = v.id;
       const li = document.createElement('li');
-      li.innerHTML = v.name;
+      li.innerHTML = $('<a>', {
+        text: v.name, 
+        href: '/victim_detail/' + id
+      });
       ul.appendChild( li );
     });
-    console.log(victims)
   });
   // let counter = $("div.main")[0];
   // const updateCount = () => {

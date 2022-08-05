@@ -48,6 +48,11 @@ def get_victims():
 
     return {"count": len(results), "victims": results}
 
+@app.route('/detail/<id>', methods=['GET'])
+def victim_detail(id):
+    victim = Black_Victim.query.get(id)
+    return {"victim": victim}
+
 class Black_Victim(db.Model):
     #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
     __tablename__ = 'Black_Victim'
