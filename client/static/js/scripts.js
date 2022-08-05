@@ -1,10 +1,10 @@
 $(document).ready(function() {
   let victims = [];
   $.get( "/victims", function( vs ) {
-    console.log(vs)
     vs.victims.forEach(v => {
       victims.push(v.name)
     });
+    console.log(victims)
     $( "main.div" ).html( victims );
   });
   // let counter = $("div.main")[0];
