@@ -64,11 +64,11 @@ db.create_all()
 
 
 
-if __name__ == '__main__':
+if __name__ != '__main__':
     # set up logging
-    gunicorn_logger = logging.getLogger('gunicorn.error')
-    app.logger.handlers = gunicorn_logger.handlers
-    app.logger.setLevel(gunicorn_logger.level)
+    # gunicorn_logger = logging.getLogger('gunicorn.error')
+    # app.logger.handlers = gunicorn_logger.handlers
+    # app.logger.setLevel(gunicorn_logger.level)
     app.logger.debug("In main ...")
 
     #Create the session
