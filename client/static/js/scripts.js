@@ -10,7 +10,7 @@ $(document).ready(function() {
         text: v.name, 
         href: '/victim_detail/' + id
       });
-      ul.appendChild( li.innerHTML );
+      li.appendTo(ul);
     });
   });
   // let counter = $("div.main")[0];
