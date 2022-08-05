@@ -65,23 +65,4 @@ if __name__ == '__main__':
     session.configure(bind=engine)
     s = session()
 
-    csv_dict = csv_to_dict('./static/data/data.csv')
-    print("Importing csv data ...")
-    try:
-        for i in csv_dict:
-            record = Black_Victim(**{
-                'name': i[0],
-                'birth_date' : datetime.strptime(i[1], '%b %d %Y').date(),
-                'death_date' : datetime.strptime(i[2], '%b %d %Y').date(),
-                'age': i[3]
-            })
-            print("Adding record: {record}")
-            s.add(record) #Add all the records
-
-        s.commit() #Attempt to commit all the records
-    except:
-        s.rollback() #Rollback the changes on error
-    finally:
-        s.close() #Close the connection
-
     app.run()
