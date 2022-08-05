@@ -1,6 +1,6 @@
 $(document).ready(function() {
   let victims = [];
-  $.get( "/get_victims", function( vs ) {
+  $.get( "/victims", function( vs ) {
     vs.forEach(v => {
       victims.push(v.name)
     });
