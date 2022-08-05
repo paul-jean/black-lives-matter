@@ -3,7 +3,7 @@ $(document).ready(function() {
   let ul = $( 'main.container div.victims_list' )[0];
   $.get( "/victims", function( vs ) {
     vs.victims.forEach(v => {
-      victims.push(v.name);
+      victims.push(v);
       var id = v.id;
       var li = $('<li/>');
       $('<a>', {
