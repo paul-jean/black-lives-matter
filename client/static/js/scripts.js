@@ -8,7 +8,7 @@ $(document).ready(function() {
       var li = $('<li/>');
       $('<a>', {
         text: v.name, 
-        href: '/victim_detail/' + id
+        href: '/detail/' + v.name
       }).appendTo(li);
       li.appendTo(ul);
     });

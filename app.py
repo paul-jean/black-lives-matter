@@ -48,9 +48,9 @@ def get_victims():
 
     return {"count": len(results), "victims": results}
 
-@app.route('/detail/<id>', methods=['GET'])
-def victim_detail(id):
-    victim = Black_Victim.query.get(id)
+@app.route('/detail/<name>', methods=['GET'])
+def victim_detail(name):
+    victim = Black_Victim.filter_by(name=name)
     return {"victim": victim}
 
 class Black_Victim(db.Model):
