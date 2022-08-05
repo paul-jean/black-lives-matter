@@ -48,13 +48,6 @@ def get_victims():
 
     return {"count": len(results), "victims": results}
 
-# def csv_to_dict(file_name):
-#     with open(file_name, newline='') as csvfile:
-#         csv_dicts = [{k: v for k, v in row.items()} for row in csv.DictReader(csvfile.splitlines(), skipinitialspace=True)]
-#         return csv_dicts
-
-# Base = declarative_base()
-
 class Black_Victim(db.Model):
     #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
     __tablename__ = 'Black_Victim'
