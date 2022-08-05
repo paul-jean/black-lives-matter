@@ -35,6 +35,17 @@ db = SQLAlchemy(app)
 def serve_static_files_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
 
+@app.route('/victims', methods=['GET'])
+def get_victims():
+    victims = Black_Victim.query.all()
+    results = [
+        {
+            "name": victim.name,
+            "birth_date": victim.birth_date,
+            "death_date": victim.death_date,
+        } for victim in victims]
+
+    return {"count": len(results), "victims": results}
 
 # def csv_to_dict(file_name):
 #     with open(file_name, newline='') as csvfile:
