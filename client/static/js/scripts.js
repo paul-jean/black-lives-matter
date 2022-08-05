@@ -4,7 +4,7 @@ $(document).ready(function() {
     vs.forEach(v => {
       victims.push(v.name)
     });
-    $( ".div.main" ).html( victims );
+    $( "main.div" ).html( victims );
   });
   // let counter = $("div.main")[0];
   // const updateCount = () => {
