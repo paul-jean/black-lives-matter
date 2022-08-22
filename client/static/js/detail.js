@@ -1,6 +1,7 @@
 $(document).ready(function() {
   let div = $( 'main.container div.victim_detail' );
   $.get( "/detail", function( victim ) {
+    console.log(victim)
     $('<p>', {
       text: victim.name, 
     }).appendTo(div);
