@@ -52,9 +52,10 @@ def get_victims():
 @app.route('/detail/<name>', methods=['GET'])
 def victim_detail(name):
     victim = Black_Victim.query.filter_by(name=name)
+    if len(victim) > 0:
+        print(victim[0])
     victim_dict = {
-        "name": victim.name,
-        "age": victim.age,
+        "name": 'stuff'
     }
     return jsonify(victim_dict)
 
