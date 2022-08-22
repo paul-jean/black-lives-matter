@@ -50,7 +50,7 @@ def get_victims():
 
 @app.route('/detail/<name>', methods=['GET'])
 def victim_detail(name):
-    victim = Black_Victim.filter_by(name=name)
+    victim = Black_Victim.query.filter_by(name=name)
     return {"victim": victim}
 
 class Black_Victim(db.Model):
