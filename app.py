@@ -64,6 +64,7 @@ def get_victims():
 def victim_detail(name):
     victim = Black_Victim.query.filter_by(name=name)
     print('now logging to stderr')
+    print(victim)
     victim_dict = {
         "name": 'stuff'
     }
