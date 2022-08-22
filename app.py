@@ -62,9 +62,9 @@ def get_victims():
 
 @app.route('/detail/<name>', methods=['GET'])
 def victim_detail(name):
-    victim = Black_Victim.query.filter_by(id=1).all()
+    victims = Black_Victim.query.all()
     print('now logging to stderr')
-    print(victim)
+    print(victims)
     victim_dict = {
         "name": 'stuff'
     }
