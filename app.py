@@ -63,15 +63,16 @@ def get_victims():
 @app.route('/detail/<name>', methods=['GET'])
 def victim_detail(name):
     victim = Black_Victim.query.filter_by(name=name).one()
-    print('victim = ')
     victim_dict = victim.__dict__
-    v = {
-        "name": victim_dict.name,
-        "birth_date": victim_dict.birth_date,
-        "death_date": victim_dict.death_date,
-        "age": victim_dict.age,
-    }
-    return jsonify(v)
+    print('victim_dict = ')
+    print(victim_dict)
+    # v = {
+    #     "name": victim_dict.name,
+    #     "birth_date": victim_dict.birth_date,
+    #     "death_date": victim_dict.death_date,
+    #     "age": victim_dict.age,
+    # }
+    return jsonify(victim_dict)
 
 @dataclass
 class Black_Victim(db.Model):
