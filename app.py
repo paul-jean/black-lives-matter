@@ -42,10 +42,9 @@ def log_to_stderr(app):
   handler.setLevel(logging.WARNING)
   app.logger.addHandler(handler)
 
-
-@app.route('/index.html')  
+@app.route('/')  
 def serve_static_files_from_root():
-    return send_from_directory(app.static_folder, request.path[1:])
+    return render_template('index.html')
 
 @app.route('/victims', methods=['GET'])
 def get_victims():
