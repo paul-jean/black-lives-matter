@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask import send_from_directory
 from flask import request
 from dataclasses import dataclass
@@ -73,7 +73,7 @@ def victim_detail(name):
         "age": victim_dict['age'],
         "id": victim_dict['id'],
     }
-    return jsonify(v)
+    return render_template('detail.html', victim_name=v.name)
 
 @dataclass
 class Black_Victim(db.Model):
