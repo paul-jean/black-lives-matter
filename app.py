@@ -50,8 +50,6 @@ def serve_static_files_from_root():
 @app.route('/victims', methods=['GET'])
 def get_victims():
     victims = Black_Victim.query.all()
-    print('victims = ')
-    print(victims)
     results = [
         {
             "name": victim.name,
@@ -64,9 +62,9 @@ def get_victims():
 
 @app.route('/detail/<name>', methods=['GET'])
 def victim_detail(name):
-    victims = Black_Victim.query.all()
-    print('victims = ')
-    print(victims)
+    victim = Black_Victim.query.filter_by(id=1).one()
+    print('victim = ')
+    print(victim)
     victim_dict = {
         "name": 'stuff'
     }
