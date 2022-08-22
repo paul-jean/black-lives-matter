@@ -8,6 +8,7 @@ import csv
 import os
 import logging
 import sys
+from logging import Formatter
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, Column, Integer, Date, String
@@ -32,6 +33,16 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
 db = SQLAlchemy(app)
 # migrate = Migrate(app, db)
 
+def log_to_stderr(app):
+  handler = logging.StreamHandler(sys.stderr)
+  handler.setFormatter(Formatter(
+    '%(asctime)s %(levelname)s: %(message)s '
+    '[in %(pathname)s:%(lineno)d]'
+  ))
+  handler.setLevel(logging.WARNING)
+  app.logger.addHandler(handler)
+
+
 @app.route('/index.html')  
 def serve_static_files_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
@@ -52,8 +63,7 @@ def get_victims():
 @app.route('/detail/<name>', methods=['GET'])
 def victim_detail(name):
     victim = Black_Victim.query.filter_by(name=name)
-    if len(victim) > 0:
-        print(victim[0])
+    print('now logging to stderr')
     victim_dict = {
         "name": 'stuff'
     }
@@ -76,6 +86,7 @@ class Black_Victim(db.Model):
 
 
 if __name__ == '__main__':
+    log_to_stderr(app)
     # set up logging
     # gunicorn_logger = logging.getLogger('gunicorn.error')
     # app.logger.handlers = gunicorn_logger.handlers
