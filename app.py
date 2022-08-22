@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import send_from_directory
 from flask import request
+from dataclasses import dataclass
 
 from datetime import datetime
 import csv
@@ -51,8 +52,10 @@ def get_victims():
 @app.route('/detail/<name>', methods=['GET'])
 def victim_detail(name):
     victim = Black_Victim.query.filter_by(name=name)
-    return {"victim": victim}
+    victim_json = jsonify(victim)
+    return victim_json
 
+@dataclass
 class Black_Victim(db.Model):
     #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
     __tablename__ = 'Black_Victim'
