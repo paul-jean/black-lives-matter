@@ -73,7 +73,7 @@ def victim_detail(name):
         "age": victim_dict['age'],
         "id": victim_dict['id'],
     }
-    return render_template('detail.html', victim_name=v.name)
+    return render_template('detail.html', victim_name=v['name'])
 
 @dataclass
 class Black_Victim(db.Model):
