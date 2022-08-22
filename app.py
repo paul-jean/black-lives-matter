@@ -65,7 +65,6 @@ def victim_detail(name):
     victim = Black_Victim.query.filter_by(name=name).one()
     victim_dict = victim.__dict__
     print('victim_dict = ')
-    print(victim_dict)
     v = {
         "name": victim_dict['name'],
         "birth_date": victim_dict['birth_date'],
@@ -73,6 +72,7 @@ def victim_detail(name):
         "age": victim_dict['age'],
         "id": victim_dict['id'],
     }
+    print(v)
     return render_template('detail.html', victim_name=v['name'])
 
 @dataclass
