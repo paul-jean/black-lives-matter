@@ -64,7 +64,7 @@ def get_victims():
 def victim_detail(name):
     victim = Black_Victim.query.filter_by(id=1).one()
     print('victim = ')
-    print(victim)
+    print(victim.__dict__)
     victim_dict = {
         "name": 'stuff'
     }
