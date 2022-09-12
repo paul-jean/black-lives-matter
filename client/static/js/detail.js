@@ -1,6 +1,12 @@
 $(document).ready(function() {
   let div = $( 'main.container div.victim_detail' );
-  $.get( "/detail", function( victim ) {
+  const name = div.innerText;
+  console.log('name = ');
+  console.log(name);
+  const endpoint = '/detail/' + encodeURIComponent(name);
+
+  $.get(endpoint, function( victim ) {
+    console.log('ajax request to /detail = ')
     console.log(victim)
     $('<p>', {
       text: victim.name, 
