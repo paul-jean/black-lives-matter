@@ -4,6 +4,7 @@ from flask import request
 from dataclasses import dataclass
 
 from datetime import datetime
+from json import jsonify
 import csv
 import os
 import logging
@@ -58,6 +59,20 @@ def get_victims():
         } for victim in victims]
 
     return {"count": len(results), "victims": results}
+
+@app.route('/api/detail/<name>', methods=['GET'])
+def victim_detail(name):
+    victim = Black_Victim.query.filter_by(name=name).one()
+    victim_dict = victim.__dict__
+    print('victim_dict = ')
+    v = {
+        "name": victim_dict['name'],
+        "birth_date": victim_dict['birth_date'],
+        "death_date": victim_dict['death_date'],
+        "age": victim_dict['age'],
+        "id": victim_dict['id'],
+    }
+    return jsonify(v)
 
 @app.route('/detail/<name>', methods=['GET'])
 def victim_detail(name):
