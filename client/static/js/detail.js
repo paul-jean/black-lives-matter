@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  let div = $( 'main.container div.victim_detail' );
+  let div = $( 'main.container div.victim_detail' )[0];
   const name = div.innerText;
   console.log('name = ');
   console.log(name);
