@@ -60,7 +60,7 @@ def get_victims():
     return {"count": len(results), "victims": results}
 
 @app.route('/api/detail/<name>', methods=['GET'])
-def victim_detail(name):
+def api_victim_detail(name):
     victim = Black_Victim.query.filter_by(name=name).one()
     victim_dict = victim.__dict__
     print('victim_dict = ')
