@@ -24,7 +24,7 @@ $(document).ready(function() {
       text: 0,
       id: 'counter',
       class: 'time_since_death'
-    }).appendTo(div);
+    }).appendTo(div)[0];
     const death_seconds = Date.parse(victim.death_date);
 
     // let counter = $("p.time_since_death")[0];
