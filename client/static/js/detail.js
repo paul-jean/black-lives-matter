@@ -4,20 +4,32 @@ $(document).ready(function() {
     console.log(victim)
     $('<p>', {
       text: victim.name, 
+      id: 'name'
     }).appendTo(div);
-  });
-  // let counter = $("div.main")[0];
-  // const updateCount = () => {
-  //     const count = parseInt(counter.innerText);
-  //     const target = 100;
-  //     const increment = 1;
+    $('<p>', {
+      text: victim.birth_date, 
+      id: 'birth'
+    }).appendTo(div);
+    $('<p>', {
+      text: victim.death_date, 
+      id: 'death'
+    }).appendTo(div);
+    let counter = $('<p>', {
+      text: 0,
+      id: 'counter',
+      class: 'time_since_death'
+    }).appendTo(div);
+    const death_seconds = Date.parse(victim.death_date);
 
-  //     if (count < target) {
-  //       counter.innerText = count + increment;
-  //       setTimeout(updateCount, 1);
-  //     } else {
-  //       counter.innerText = target;
-  //     }
-  //   };
-  // updateCount();
+    // let counter = $("p.time_since_death")[0];
+    const updateCount = () => {
+      const now_seconds = Date.now();
+      const time_since_death = now_seconds - death_seconds;
+      counter.innerText = time_since_death;
+      setTimeout(updateCount, 1);
+    };
+
+    updateCount();
+  });
+
 });
