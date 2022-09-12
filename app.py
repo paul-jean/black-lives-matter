@@ -4,7 +4,6 @@ from flask import request
 from dataclasses import dataclass
 
 from datetime import datetime
-from json import jsonify
 import csv
 import os
 import logging
