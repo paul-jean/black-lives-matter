@@ -73,6 +73,18 @@ def api_victim_detail(name):
     }
     return jsonify(v)
 
+@app.route('/api/exhibit/<city>', methods=['GET'])
+def api_victim_detail(city):
+    exhibit = Exhibit.query.filter_by(city=city).one()
+    exhibit_dict = exhibit.__dict__
+    print('exhibit_dict = ')
+    e = {
+        "id": exhibit_dict['id'],
+        "city": exhibit_dict['city'],
+        "start_date": exhibit_dict['start_date'],
+    }
+    return jsonify(e)
+
 @app.route('/detail/<name>', methods=['GET'])
 def victim_detail(name):
     victim = Black_Victim.query.filter_by(name=name).one()
