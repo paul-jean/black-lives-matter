@@ -100,8 +100,17 @@ class Black_Victim(db.Model):
     death_date = Column(Date)
     age = Column(Integer)
 
-# db.create_all()
+@dataclass
+class Exhibit(db.Model):
+    #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
+    __tablename__ = 'Exhibit'
+    __table_args__ = {'sqlite_autoincrement': True}
+    #tell SQLAlchemy the name of column and its attributes:
+    id = Column(Integer, primary_key=True, nullable=False) 
+    city = Column(String) # Vancouver
+    start_date = Column(Date) # converted to a timestamp on the client
 
+db.create_all()
 
 
 if __name__ == '__main__':
