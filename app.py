@@ -74,7 +74,7 @@ def api_victim_detail(name):
     return jsonify(v)
 
 @app.route('/api/exhibit/<city>', methods=['GET'])
-def api_victim_detail(city):
+def api_exhibit_detail(city):
     exhibit = Exhibit.query.filter_by(city=city).one()
     exhibit_dict = exhibit.__dict__
     print('exhibit_dict = ')
