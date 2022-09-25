@@ -11,15 +11,11 @@ $(document).ready(function() {
     console.log('ajax request to /detail = ')
     console.log(victim)
     $('<p>', {
-      text: victim.name, 
-      id: 'name'
-    }).appendTo(div);
-    $('<p>', {
-      text: victim.birth_date, 
+      text: `Born: ${victim.birth_date}`, 
       id: 'birth'
     }).appendTo(div);
     $('<p>', {
-      text: victim.death_date, 
+      text: `Died: ${victim.death_date}`, 
       id: 'death'
     }).appendTo(div);
     let time_since_death_div = $('<p>', {
@@ -60,11 +56,11 @@ $(document).ready(function() {
         const now_seconds = Date.now();
         const time_since_death_dict = time_diff_dict(now_seconds, death_seconds);
         const time_since_death_str =  `${time_since_death_dict['years']} years, ${time_since_death_dict['months']} months, ${time_since_death_dict['days']} days, ${time_since_death_dict['hours']} hours, ${time_since_death_dict['minutes']} minutes, ${time_since_death_dict['seconds']} seconds, ${time_since_death_dict['ms']} ms`;
-        time_since_death_div.innerText = time_since_death_str;
+        time_since_death_div.innerText = `Dead for: ${time_since_death_str}`;
 
         const time_dead_since_exhibit_dict = time_diff_dict(now_seconds, exhibit_start_seconds);
         const time_dead_since_exhibit_str =  `${time_dead_since_exhibit_dict['years']} years, ${time_dead_since_exhibit_dict['months']} months, ${time_dead_since_exhibit_dict['days']} days, ${time_dead_since_exhibit_dict['hours']} hours, ${time_dead_since_exhibit_dict['minutes']} minutes, ${time_dead_since_exhibit_dict['seconds']} seconds, ${time_dead_since_exhibit_dict['ms']} ms`;
-        time_dead_since_exhibit_div.innerText = time_dead_since_exhibit_str;
+        time_dead_since_exhibit_div.innerText = `Dead since exhibit: ${time_dead_since_exhibit_str}`;
 
         setTimeout(updateCounters, 1);
       };
