@@ -10,12 +10,14 @@ $(document).ready(function() {
   $.get(endpoint, function( victim ) {
     console.log('ajax request to /detail = ')
     console.log(victim)
+    victim_birth_str = moment(victim.birth_date).format("dddd, MMMM Do YYYY");
+    victim_death_str = moment(victim.death_date).format("dddd, MMMM Do YYYY");
     $('<p>', {
-      text: `Born: ${victim.birth_date}`, 
+      text: `Born: ${victim_birth_str}`, 
       id: 'birth'
     }).appendTo(div);
     $('<p>', {
-      text: `Died: ${victim.death_date}`, 
+      text: `Died: ${victim_death_str}`, 
       id: 'death'
     }).appendTo(div);
     let time_since_death_div = $('<p>', {
