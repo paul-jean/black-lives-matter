@@ -22,7 +22,7 @@ $(document).ready(function() {
       text: victim.death_date, 
       id: 'death'
     }).appendTo(div);
-    let time_since_birth_div = $('<p>', {
+    let time_since_death_div = $('<p>', {
       text: 0,
       id: 'counter_since_death',
       class: 'time_since_death'
@@ -34,14 +34,37 @@ $(document).ready(function() {
     }).appendTo(div)[0];
     const death_seconds = Date.parse(victim.death_date);
 
+    // https://stackoverflow.com/questions/26311489/obtain-difference-between-two-dates-in-years-months-days-in-javascript/26311490#26311490
+    function time_diff_dict(d1, d2) {
+      var m = moment(d1);
+      var years = m.diff(d2, 'years');
+      m.add(-years, 'years');
+      var months = m.diff(d2, 'months');
+      m.add(-months, 'months');
+      var days = m.diff(d2, 'days');
+      m.add(-days, 'days');
+      var hours = m.diff(d2, 'hours');
+      m.add(-hours, 'hours');
+      var minutes = m.diff(d2, 'minutes');
+      m.add(-minutes, 'minutes');
+      var seconds = m.diff(d2, 'seconds');
+      m.add(-seconds, 'seconds');
+    
+      return {years: years, months: months, days: days, hours: hours, minutes: minutes, seconds: seconds};
+    }
+
     $.get(exhibit_endpoint, function(exhibit) {
       const exhibit_start_seconds = Date.parse(exhibit.start_date);
       const updateCounters = () => {
         const now_seconds = Date.now();
-        const time_since_death = now_seconds - death_seconds;
-        const time_dead_since_exhibit = now_seconds - exhibit_start_seconds;
-        time_since_birth_div.innerText = time_since_death;
-        time_dead_since_exhibit_div.innerText = time_dead_since_exhibit;
+        const time_since_death_dict = time_diff_dict(now_seconds, death_seconds);
+        const time_since_death_str =  `${time_since_death_dict['years']} years, ${time_since_death_dict['months']} months, ${time_since_death_dict['days']} days, ${time_since_death_dict['hours']} hours, ${time_since_death_dict['minutes']} minutes, ${time_since_death_dict['seconds']} seconds`;
+        time_since_death_div.innerText = time_since_death_str;
+
+        const time_dead_since_exhibit_dict = time_diff_dict(now_seconds, exhibit_start_seconds);
+        const time_dead_since_exhibit_str =  `${time_dead_since_exhibit_dict['years']} years, ${time_dead_since_exhibit_dict['months']} months, ${time_dead_since_exhibit_dict['days']} days, ${time_dead_since_exhibit_dict['hours']} hours, ${time_dead_since_exhibit_dict['minutes']} minutes, ${time_dead_since_exhibit_dict['seconds']} seconds`;
+        time_dead_since_exhibit_div.innerText = time_dead_since_exhibit_str;
+
         setTimeout(updateCounters, 1);
       };
       updateCounters();
