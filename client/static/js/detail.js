@@ -37,12 +37,12 @@ $(document).ready(function() {
       const updateCounters = () => {
         const now_seconds = Date.now();
         const time_since_death_dict = time_diff_dict(now_seconds, death_seconds);
-        time_since_death_dict.keys().map(function(k) {
+        Object.keys(time_since_death_dict).map(function(k) {
           row_div.find(k).innerText = time_since_death_dict[k];
         });
 
         const time_dead_since_exhibit_dict = time_diff_dict(now_seconds, exhibit_start_seconds);
-        time_dead_since_exhibit_dict.keys().map(function(k) {
+        Object(time_dead_since_exhibit_dict).map(function(k) {
           row_div.find(k).innerText = time_dead_since_exhibit_dict[k];
         });
 
