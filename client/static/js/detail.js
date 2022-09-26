@@ -32,18 +32,19 @@ $(document).ready(function() {
 
     $.get(exhibit_endpoint, function(exhibit) {
       const exhibit_start_seconds = Date.parse(exhibit.start_date);
-      const row_div = $('container.time_since_death');
+      const death_row_div = $('container.time_since_death');
+      const exhibit_row_div = $('container.time_since_death');
 
       const updateCounters = () => {
         const now_seconds = Date.now();
         const time_since_death_dict = time_diff_dict(now_seconds, death_seconds);
         Object.keys(time_since_death_dict).map(function(k) {
-          row_div.find(k).innerText = time_since_death_dict[k];
+          death_row_div.find(k).innerText = time_since_death_dict[k];
         });
 
         const time_dead_since_exhibit_dict = time_diff_dict(now_seconds, exhibit_start_seconds);
         Object.keys(time_dead_since_exhibit_dict).map(function(k) {
-          row_div.find(k).innerText = time_dead_since_exhibit_dict[k];
+          exhibit_row_div.find(k).innerText = time_dead_since_exhibit_dict[k];
         });
 
         setTimeout(updateCounters, 1);
