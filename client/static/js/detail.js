@@ -42,7 +42,7 @@ $(document).ready(function() {
         });
 
         const time_dead_since_exhibit_dict = time_diff_dict(now_seconds, exhibit_start_seconds);
-        Object(time_dead_since_exhibit_dict).map(function(k) {
+        Object.keys(time_dead_since_exhibit_dict).map(function(k) {
           row_div.find(k).innerText = time_dead_since_exhibit_dict[k];
         });
 
