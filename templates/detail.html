@@ -1,91 +1,103 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- Bootstrap styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
-  </head>
-  <body>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}" ></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}" ></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- Begin page content -->
-    <main role="main" class="container">
-      <h1 class="mt-5">Black Lives Matter</h1>
-      <div class="victim_detail">
-        {{ victim_name }}
-      </div>
+<head>
+  <!-- Bootstrap styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+</head>
 
-      <div class="container">
-        <div class="row headers">
-          <div class="col-sm years">
-            Years
-          </div>
-          <div class="col-sm months">
-            Months
-          </div>
-          <div class="col-sm days">
-            Days
-          </div>
-          <div class="col-sm hours">
-            Hours
-          </div>
-          <div class="col-sm minutes">
-            Minutes
-          </div>
-          <div class="col-sm seconds">
-            Seconds
-          </div>
-          <div class="col-sm milliseconds">
-            Milliseconds
-          </div>
+<body>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"
+    integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Begin page content -->
+  <main role="main" class="container">
+    <h1 class="mt-5">Black Lives Matter</h1>
+    <div class="victim_detail h2">
+      {{ victim_name }}
+    </div>
+
+    <div class="h2">
+      Dead since:
+    </div>
+
+    <div class="container">
+      <div class="row headers">
+        <div class="col-sm years h6">
+          Years
         </div>
-
-        <div class="row time_since_death">
-          <div class="col-sm years">
-          </div>
-          <div class="col-sm months">
-          </div>
-          <div class="col-sm days">
-          </div>
-          <div class="col-sm hours">
-          </div>
-          <div class="col-sm minutes">
-          </div>
-          <div class="col-sm seconds">
-          </div>
-          <div class="col-sm milliseconds">
-          </div>
+        <div class="col-sm months h6">
+          Months
         </div>
-
-        <div class="row time_dead_since_exhibit">
-          <div class="col-sm years">
-          </div>
-          <div class="col-sm months">
-          </div>
-          <div class="col-sm days">
-          </div>
-          <div class="col-sm hours">
-          </div>
-          <div class="col-sm minutes">
-          </div>
-          <div class="col-sm seconds">
-          </div>
-          <div class="col-sm milliseconds">
-          </div>
+        <div class="col-sm days h6">
+          Days
+        </div>
+        <div class="col-sm hours h6">
+          Hours
+        </div>
+        <div class="col-sm minutes h6">
+          Minutes
+        </div>
+        <div class="col-sm seconds h6">
+          Seconds
+        </div>
+        <div class="col-sm milliseconds h6">
+          Milliseconds
         </div>
       </div>
-    </main>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/detail.js') }}" ></script>
-
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+      <div class="row time_since_death">
+        <div class="col-sm years small">
+        </div>
+        <div class="col-sm months small">
+        </div>
+        <div class="col-sm days small">
+        </div>
+        <div class="col-sm hours small">
+        </div>
+        <div class="col-sm minutes small">
+        </div>
+        <div class="col-sm seconds small">
+        </div>
+        <div class="col-sm milliseconds small">
+        </div>
       </div>
-    </footer>
 
-  </body>
+      <div class="h2">
+        Dead since exhibit started:
+      </div>
+      <div class="row time_dead_since_exhibit">
+        <div class="col-sm years small">
+        </div>
+        <div class="col-sm months small">
+        </div>
+        <div class="col-sm days small">
+        </div>
+        <div class="col-sm hours small">
+        </div>
+        <div class="col-sm minutes small">
+        </div>
+        <div class="col-sm seconds small">
+        </div>
+        <div class="col-sm milliseconds small">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/detail.js') }}"></script>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Black Lives Matter</span>
+    </div>
+  </footer>
+
+</body>
+
 </html>
