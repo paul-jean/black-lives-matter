@@ -33,8 +33,8 @@ $(document).ready(function () {
 
         let clock_time_dict = {
           'year': clock_date.getFullYear(),
-          'month': clock_date.getMonth(),
-          'day': clock_date.getDay(),
+          'month': clock_date.getMonth() + 1, // zero-indexed months
+          'day': clock_date.getDate(),
           'hour': clock_date.getHours(),
           'minute': clock_date.getMinutes(),
           'second': clock_date.getSeconds(),
