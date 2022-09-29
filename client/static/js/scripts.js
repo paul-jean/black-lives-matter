@@ -1,31 +1,22 @@
-$(document).ready(function() {
-  let victims = [];
-  let ul = $( 'main.container div.victims_list' )[0];
-  $.get( "/victims", function( vs ) {
-    vs.victims.forEach(v => {
-      victims.push(v);
-      var id = v.id;
-      var li = $('<li/>');
+$(document).ready(function () {
+  let ul = $('main.container div.victims_list')[0];
+  $.get("/victims", function (data) {
+    data.victims.forEach(v => {
+      // birth page link:
+      var li_birth = $('<li/>');
       $('<a>', {
-        text: v.name, 
-        href: '/detail/' + v.name
-      }).appendTo(li);
-      li.appendTo(ul);
-    });
-    console.log(victims);
-  });
-  // let counter = $("div.main")[0];
-  // const updateCount = () => {
-  //     const count = parseInt(counter.innerText);
-  //     const target = 100;
-  //     const increment = 1;
+        text: `${v.name} (birth)`,
+        href: '/detail/birth/' + v.name
+      }).appendTo(li_birth);
+      li_birth.appendTo(ul);
 
-  //     if (count < target) {
-  //       counter.innerText = count + increment;
-  //       setTimeout(updateCount, 1);
-  //     } else {
-  //       counter.innerText = target;
-  //     }
-  //   };
-  // updateCount();
+      // death page link:
+      var li_death = $('<li/>');
+      $('<a>', {
+        text: `${v.name} (death)`,
+        href: '/detail/death/' + v.name
+      }).appendTo(li_death);
+      li_death.appendTo(ul);
+    });
+  });
 });
