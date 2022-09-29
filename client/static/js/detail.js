@@ -8,24 +8,6 @@ $(document).ready(function () {
   const endpoint = '/api/detail/' + encodeURIComponent(name);
   const exhibit_endpoint = '/api/exhibit/' + encodeURIComponent(CURRENT_CITY);
 
-  // https://stackoverflow.com/questions/26311489/obtain-difference-between-two-dates-in-years-months-days-in-javascript/26311490#26311490
-  function time_dict(t) {
-    var m = moment(t);
-    var years = m.diff(d2, 'years');
-    m.add(-years, 'years');
-    var months = m.diff(d2, 'months');
-    m.add(-months, 'months');
-    var days = m.diff(d2, 'days');
-    m.add(-days, 'days');
-    var hours = m.diff(d2, 'hours');
-    m.add(-hours, 'hours');
-    var minutes = m.diff(d2, 'minutes');
-    m.add(-minutes, 'minutes');
-    var seconds = m.diff(d2, 'seconds');
-
-    return { years: years, months: months, days: days, hours: hours, minutes: minutes, seconds: seconds };
-  }
-
   $.get(endpoint, function (victim) {
     const death_seconds = Date.parse(victim.death_date);
     const birth_seconds = Date.parse(victim.birth_date);
