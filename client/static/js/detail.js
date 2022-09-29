@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     $.get(exhibit_endpoint, function (exhibit) {
       const exhibit_start_seconds = Date.parse(exhibit.start_date);
-      const clock_row_div = $('div.row.clock');
+      const clock_row_div = $('div.row.clock')[0];
 
       const updateCounters = () => {
         const now_seconds = Date.now();
