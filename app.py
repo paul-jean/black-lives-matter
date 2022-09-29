@@ -110,12 +110,18 @@ def victim_detail(birth_or_death, name):
         "id": victim_dict["id"],
     }
     print(v)
+    year, month, day = victim_dict["birth_date"].split("-")
+    template_birth_date = datetime.datetime(year, month, day)
+    template_birth_str = template_birth_date.strftime("%B %d %Y")
+    year, month, day = victim_dict["death_date"].split("-")
+    template_death_date = datetime.datetime(year, month, day)
+    template_death_str = template_death_date.strftime("%B %d %Y")
     return render_template(
         "detail.html",
         victim_name=v["name"],
         birth_or_death=birth_or_death,
-        birth_date=v["birth_date"],
-        death_date=v["death_date"],
+        birth_date=template_birth_str,
+        death_date=template_death_str,
     )
 
 
