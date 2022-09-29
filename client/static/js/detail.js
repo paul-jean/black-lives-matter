@@ -47,8 +47,7 @@ $(document).ready(function () {
           // death: subtract seconds since exhibit start
           clock_time = death_seconds - exhibit_seconds;
         }
-        const clock_time_ms = clock_time * 1000;
-        let clock_date = new Date(clock_time_ms);
+        let clock_date = new Date(clock_time);
 
         let clock_time_dict = {
           'year': clock_date.getFullYear(),
