@@ -58,7 +58,7 @@ $(document).ready(function () {
           'seconds': clock_date.getSeconds(),
         };
         Object.keys(clock_time_dict).map(function (k) {
-          const clock_div = clock_row_div.find(`.${k}`)[0];
+          let clock_div = clock_row_div.find(`.${k}`)[0];
           clock_div.innerText = clock_time_dict[k];
         });
 
