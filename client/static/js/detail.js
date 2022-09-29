@@ -55,7 +55,7 @@ $(document).ready(function () {
           'day': clock_date.getDay(),
           'hour': clock_date.getHours(),
           'minute': clock_date.getMinutes(),
-          'seconds': clock_date.getSeconds(),
+          'second': clock_date.getSeconds(),
         };
         Object.keys(clock_time_dict).map(function (k) {
           let clock_div = $(clock_row_div).find(`.${k}`)[0];
