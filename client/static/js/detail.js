@@ -3,7 +3,7 @@ $(document).ready(function () {
   let div = $('main.container div.victim_detail')[0];
   let clock_div = $('main.container div.clock')[0];
   const name = div.innerText;
-  const birth_or_death = clock_div['data-birth-or-death'];
+  const birth_or_death = clock_div.getAttribute('data-birth-or-death');
   const is_birth = birth_or_death === "birth" ? true : false;
   const endpoint = '/api/detail/' + encodeURIComponent(name);
   const exhibit_endpoint = '/api/exhibit/' + encodeURIComponent(CURRENT_CITY);
