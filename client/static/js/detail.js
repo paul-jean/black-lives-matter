@@ -12,42 +12,42 @@ $(document).ready(function () {
     const death_seconds = Date.parse(victim.death_date);
     const birth_seconds = Date.parse(victim.birth_date);
 
-    $.get(exhibit_endpoint, function (exhibit) {
-      const exhibit_start_seconds = Date.parse(exhibit.start_date);
-      const clock_row_div = $('div.row.clock')[0];
+    // reset the counter on page load
+    // (see git history for getting exhibit start from an endpoint)
+    const exhibit_start_seconds = Date.now();
+    const clock_row_div = $('div.row.clock')[0];
 
-      const updateCounters = () => {
-        const now_seconds = Date.now();
-        // birth: counting up from birth to death
-        // death: counting down from death to birth
-        let clock_time = 0;
-        const exhibit_seconds = now_seconds - exhibit_start_seconds;
-        if (is_birth) {
-          // birth: add seconds since exhibit start
-          clock_time = birth_seconds + exhibit_seconds;
-        } else {
-          // death: subtract seconds since exhibit start
-          clock_time = death_seconds - exhibit_seconds;
-        }
-        let clock_date = new Date(clock_time);
+    const updateCounters = () => {
+      const now_seconds = Date.now();
+      // birth: counting up from birth to death
+      // death: counting down from death to birth
+      let clock_time = 0;
+      const exhibit_seconds = now_seconds - exhibit_start_seconds;
+      if (is_birth) {
+        // birth: add seconds since exhibit start
+        clock_time = birth_seconds + exhibit_seconds;
+      } else {
+        // death: subtract seconds since exhibit start
+        clock_time = death_seconds - exhibit_seconds;
+      }
+      let clock_date = new Date(clock_time);
 
-        let clock_time_dict = {
-          'year': clock_date.getFullYear(),
-          'month': clock_date.getMonth() + 1, // zero-indexed months
-          'day': clock_date.getDate(),
-          'hour': clock_date.getHours(),
-          'minute': clock_date.getMinutes(),
-          'second': clock_date.getSeconds(),
-        };
-        Object.keys(clock_time_dict).map(function (k) {
-          let clock_div = $(clock_row_div).find(`.${k}`)[0];
-          clock_div.innerText = clock_time_dict[k];
-        });
-
-        setTimeout(updateCounters, 1);
+      let clock_time_dict = {
+        'year': clock_date.getFullYear(),
+        'month': clock_date.getMonth() + 1, // zero-indexed months
+        'day': clock_date.getDate(),
+        'hour': clock_date.getHours(),
+        'minute': clock_date.getMinutes(),
+        'second': clock_date.getSeconds(),
       };
-      updateCounters();
-    })
+      Object.keys(clock_time_dict).map(function (k) {
+        let clock_div = $(clock_row_div).find(`.${k}`)[0];
+        clock_div.innerText = clock_time_dict[k];
+      });
+
+      setTimeout(updateCounters, 1);
+    };
+    updateCounters();
 
   });
 
