@@ -14,13 +14,13 @@
 
   <!-- Begin page content -->
   <main role="main" class="container mt-4 text-white bg-dark">
-    <div class="container mt-4 text-center vertical-center">
+    <div class="container mt-4 text-center">
 
-      <div class="victim_detail h1 mb-4">
+      <div class="victim_detail h1 big-margin">
         {{ victim_name }}
       </div>
 
-      <div class="h2 mt-4 mb-4">
+      <div class="h2 big-margin">
         {% if birth_or_death == "birth" %}
         Birth:
         {{ birth_date }}
@@ -30,7 +30,7 @@
         {% endif %}
       </div>
 
-      <div class="row headers mt-4">
+      <div class="row headers big-margin">
         <div class="col-sm month h6"> Month </div>
         <div class="col-sm day h6"> Day </div>
         <div class="col-sm year h6"> Year </div>
@@ -47,7 +47,7 @@
         <div class="col-sm second small"></div>
       </div>
 
-      <div class="h4 mt-4">
+      <div class="h4 mt-4 big-margin">
         {% if birth_or_death == "birth" %}
         Lifelong clock moving forward from birth
         {% else %}
