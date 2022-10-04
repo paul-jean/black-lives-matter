@@ -111,9 +111,9 @@ def victim_detail(birth_or_death, name):
     }
     print(v)
     birth_date = victim_dict["birth_date"]
-    template_birth_str = birth_date.strftime("%B %d %Y")
+    template_birth_str = birth_date.strftime("%B %d, %Y")
     death_date = victim_dict["death_date"]
-    template_death_str = death_date.strftime("%B %d %Y")
+    template_death_str = death_date.strftime("%B %d, %Y")
     return render_template(
         "detail.html",
         victim_name=v["name"],
