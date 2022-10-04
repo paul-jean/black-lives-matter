@@ -28,3 +28,12 @@ body {
     max-width: 680px;
     padding: 0 15px;
 }
+
+/* https://stackoverflow.com/questions/22196587/how-to-vertically-center-a-container-in-bootstrap */
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+  
+    display: flex;
+    align-items: center;
+  }
