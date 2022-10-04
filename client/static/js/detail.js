@@ -33,12 +33,12 @@ $(document).ready(function () {
       let clock_date = new Date(clock_time);
 
       let clock_time_dict = {
-        'year': clock_date.getFullYear(),
-        'month': clock_date.toLocaleString('default', { month: 'long' }),
-        'day': clock_date.getDate(),
-        'hour': clock_date.getHours(),
-        'minute': clock_date.getMinutes(),
-        'second': clock_date.getSeconds(),
+        'year': clock_date.getUTCFullYear(),
+        'month': clock_date.toLocaleString('default', { month: 'long', timezone: 'UTC' }),
+        'day': clock_date.getUTCDate(),
+        'hour': clock_date.getUTCHours(),
+        'minute': clock_date.getUTCMinutes(),
+        'second': clock_date.getUTCSeconds(),
       };
       Object.keys(clock_time_dict).map(function (k) {
         let clock_div = $(clock_row_div).find(`.${k}`)[0];
