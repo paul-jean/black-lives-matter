@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  document.body.style.zoom = "150%";
   const CURRENT_CITY = 'Vancouver';
   let div = $('main.container div.victim_detail')[0];
   let clock_div = $('main.container div.clock')[0];
