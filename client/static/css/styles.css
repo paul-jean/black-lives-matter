@@ -6,7 +6,6 @@ html {
 }
 
 body {
-    min-height: 100%;
     margin-bottom: 60px;
     /* Margin bottom by footer height */
 }
@@ -30,12 +29,6 @@ body {
 .container {
     /* Center the main container vertically: */
     /* https://stackoverflow.com/questions/396145/how-can-i-vertically-center-a-div-element-for-all-browsers-using-css */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background: green;
-    width: auto;
     max-width: 680px;
     padding: 0 15px;
 }
@@ -43,4 +36,8 @@ body {
 .big-margin {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.big-top-margin {
+    margin-top: 80px;
 }
