@@ -43,6 +43,5 @@ body {
 }
 
 .victims_list {
-    overflow-y: scroll;
     height: 400px;
 }
