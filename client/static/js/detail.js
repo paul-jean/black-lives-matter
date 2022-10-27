@@ -11,7 +11,7 @@ $(document).ready(function () {
     const death_seconds = Date.parse(victim.death_date);
     const birth_seconds = Date.parse(victim.birth_date);
 
-    let exhibit_start_seconds = Date.now();
+    var exhibit_start_seconds = Date.now();
     const clock_row_div = $('div.row.clock')[0];
 
     // reset the counter on page load
@@ -19,6 +19,15 @@ $(document).ready(function () {
     $(window).bind("load", function() {
       exhibit_start_seconds = Date.now();
     });
+    sessionStorage.reloadAfterPageLoad = true;
+    $( function () {
+        if ( sessionStorage.reloadAfterPageLoad ) {
+            exhibit_start_seconds = Date.now();
+            sessionStorage.reloadAfterPageLoad = false;
+        }
+      } 
+    );
+
 
     const updateCounters = () => {
       const now_seconds = Date.now();
