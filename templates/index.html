@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- Bootstrap styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
-  </head>
-  <body>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}" ></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}" ></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}" ></script>
 
-      <!-- Begin page content -->
-    <main role="main" class="container">
-      <h1 class="mt-5">Black Lives Matter</h1>
-      <div class="victims_list">
-        <ul>
-        </ul>
-      </div>
-    </main>
+<head>
+  <!-- Bootstrap styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+</head>
 
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Black Lives Matter</span>
-      </div>
-    </footer>
+<body>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 
-  </body>
+  <!-- Begin page content -->
+  <main role="main" class="container">
+    <h1 class="mt-5">Black Lives Matter</h1>
+    <div class="victims_list overflow-auto">
+      <ul>
+      </ul>
+    </div>
+  </main>
+
+
+</body>
+
 </html>
