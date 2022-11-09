@@ -1,13 +1,11 @@
 $(document).ready(function () {
   document.body.style.zoom = "150%";
-  const CURRENT_CITY = 'Vancouver';
   let div = $('main.container div.victim_detail')[0];
   let clock_div = $('main.container div.clock')[0];
   const name = div.innerText;
   const birth_or_death = clock_div.getAttribute('data-birth-or-death');
   const is_birth = birth_or_death === "birth" ? true : false;
   const endpoint = '/api/detail/' + encodeURIComponent(name);
-  const exhibit_endpoint = '/api/exhibit/' + encodeURIComponent(CURRENT_CITY);
 
   $.get(endpoint, function (victim) {
     const day_in_seconds = 60 * 60 * 24;
@@ -15,10 +13,23 @@ $(document).ready(function () {
     const death_seconds = Date.parse(victim.death_date) + day_in_seconds - 1;
     const birth_seconds = Date.parse(victim.birth_date);
 
+    var exhibit_start_seconds = Date.now();
+    const clock_row_div = $('div.row.clock')[0];
+
     // reset the counter on page load
     // (see git history for getting exhibit start from an endpoint)
-    const exhibit_start_seconds = Date.now();
-    const clock_row_div = $('div.row.clock')[0];
+    $(window).bind("load", function() {
+      exhibit_start_seconds = Date.now();
+    });
+    sessionStorage.reloadAfterPageLoad = true;
+    $( function () {
+        if ( sessionStorage.reloadAfterPageLoad ) {
+            exhibit_start_seconds = Date.now();
+            sessionStorage.reloadAfterPageLoad = false;
+        }
+      } 
+    );
+
 
     const updateCounters = () => {
       const now_seconds = Date.now();
