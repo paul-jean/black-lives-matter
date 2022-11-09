@@ -10,7 +10,9 @@ $(document).ready(function () {
   const exhibit_endpoint = '/api/exhibit/' + encodeURIComponent(CURRENT_CITY);
 
   $.get(endpoint, function (victim) {
-    const death_seconds = Date.parse(victim.death_date);
+    const day_in_seconds = 60 * 60 * 24;
+    // add a day to the death date so it counts down from the end of the day
+    const death_seconds = Date.parse(victim.death_date) + day_in_seconds;
     const birth_seconds = Date.parse(victim.birth_date);
 
     // reset the counter on page load
