@@ -8,9 +8,10 @@ $(document).ready(function () {
   const endpoint = '/api/detail/' + encodeURIComponent(name);
 
   $.get(endpoint, function (victim) {
-    const day_in_seconds = 60 * 60 * 24;
+    let death_date_obj = new Date(victim.death_date);
     // add a day to the death date so it counts down from the end of the day
-    const death_seconds = Date.parse(victim.death_date) + day_in_seconds - 1;
+    death_date_obj.setDate(death_date_obj.getDate() + 1);
+    const death_seconds = Date.parse(death_date_obj);
     const birth_seconds = Date.parse(victim.birth_date);
 
     var exhibit_start_seconds = Date.now();
@@ -18,16 +19,16 @@ $(document).ready(function () {
 
     // reset the counter on page load
     // (see git history for getting exhibit start from an endpoint)
-    $(window).bind("load", function() {
+    $(window).bind("load", function () {
       exhibit_start_seconds = Date.now();
     });
     sessionStorage.reloadAfterPageLoad = true;
-    $( function () {
-        if ( sessionStorage.reloadAfterPageLoad ) {
-            exhibit_start_seconds = Date.now();
-            sessionStorage.reloadAfterPageLoad = false;
-        }
-      } 
+    $(function () {
+      if (sessionStorage.reloadAfterPageLoad) {
+        exhibit_start_seconds = Date.now();
+        sessionStorage.reloadAfterPageLoad = false;
+      }
+    }
     );
 
 
