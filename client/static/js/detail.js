@@ -12,7 +12,7 @@ $(document).ready(function () {
   $.get(endpoint, function (victim) {
     const day_in_seconds = 60 * 60 * 24;
     // add a day to the death date so it counts down from the end of the day
-    const death_seconds = Date.parse(victim.death_date) + day_in_seconds;
+    const death_seconds = Date.parse(victim.death_date) + day_in_seconds - 1;
     const birth_seconds = Date.parse(victim.birth_date);
 
     // reset the counter on page load
