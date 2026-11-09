@@ -1,6 +1,6 @@
 // Service worker: caches every file on first visit so the exhibit runs offline.
 // Bump CACHE_VERSION whenever files are added or renamed.
-const CACHE_VERSION = 'blm-v3';
+const CACHE_VERSION = 'blm-v4';
 
 const FILES = [
   './',

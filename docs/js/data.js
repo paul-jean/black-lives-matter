@@ -73,14 +73,14 @@ window.VICTIMS = [
   {
     "id": 11,
     "name": "D'Andre Campbell",
-    "birth_date": "1993-01-01",
+    "birth_date": "1993-12-17",
     "death_date": "2020-04-06",
     "age": 26
   },
   {
     "id": 12,
     "name": "Sumaya Dalmar",
-    "birth_date": "1989-01-01",
+    "birth_date": "1988-09-10",
     "death_date": "2015-02-22",
     "age": 26
   }
