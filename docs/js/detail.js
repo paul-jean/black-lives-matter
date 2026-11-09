@@ -46,7 +46,7 @@
 
   const cells = {};
   ['month', 'day', 'year', 'hour', 'minute', 'second'].forEach(k => {
-    cells[k] = document.querySelector(`.row.clock .${k}`);
+    cells[k] = document.querySelector(`.clock-grid .clock .${k}`);
   });
 
   const update = () => {
