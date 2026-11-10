@@ -39,4 +39,5 @@ too, but offline caching only runs over http.)
 ## History
 
 Until this conversion the app was a Flask + Postgres server on Heroku; that
-code is in the Git history before the `offline-ipad` branch.
+code is in the Git history before the commit "Convert exhibit to an offline
+static site for iPad" (`bd3bf76`).
