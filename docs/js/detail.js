@@ -30,10 +30,10 @@
   nameDiv.textContent = victim.name;
   if (mode === 'birth') {
     dateDiv.textContent = `Birth: ${formatDate(victim.birth_date)}`;
-    captionDiv.textContent = 'Lifelong clock moving forward from birth toward death';
+    captionDiv.textContent = 'Lifelong clock moving forward\nfrom birth toward death';
   } else {
     dateDiv.textContent = `Death: ${formatDate(victim.death_date)}`;
-    captionDiv.textContent = 'Lifelong clock moving backward from death toward birth';
+    captionDiv.textContent = 'Lifelong clock moving backward\nfrom death toward birth';
   }
 
   // ISO dates parse as UTC midnight. The death clock counts down from the

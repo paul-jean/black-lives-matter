@@ -95,3 +95,9 @@ body {
     user-select: none;
     -webkit-touch-callout: none;
 }
+
+/* Caption under the clock: two fixed, centred lines (the \n in detail.js). */
+.clock_caption {
+    white-space: pre-line;
+    text-align: center;
+}
